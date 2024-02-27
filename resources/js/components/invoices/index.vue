@@ -9,7 +9,6 @@ import {useRouter} from "vue-router";
     const router = useRouter()
 
 
-
     onMounted(async () => {
         getInvoice()
     })
@@ -31,7 +30,6 @@ import {useRouter} from "vue-router";
         console.log('form', form.data)
         router.push('/invoice/new')
     }
-
 
 
 </script>
