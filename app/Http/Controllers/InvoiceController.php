@@ -70,9 +70,11 @@ class InvoiceController extends Controller
     }
 
     public function add_invoice(Request $request){
+
         $invoice_item = $request->input("invoice_item");
 
         $invoiceData['sub_total'] = $request->input("subtotal");
+        $invoiceData['total'] = $request->input("total");
         $invoiceData['customer_id'] = $request->input("customer_id");
         $invoiceData['number'] = $request->input("number");
         $invoiceData['date'] = $request->input("date");

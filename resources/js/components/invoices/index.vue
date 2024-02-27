@@ -15,7 +15,7 @@ import {useRouter} from "vue-router";
 
     const getInvoice = async () => {
         let response = await axios.get('/api/get_all_invoice')
-        console.log('response', response)
+        //console.log('response', response)
         invoices.value = response.data.invoices
     }
 
@@ -27,7 +27,7 @@ import {useRouter} from "vue-router";
 
     const newInvoice = async () => {
         let form = await axios.get('/api/create_invoice')
-        console.log('form', form.data)
+        //console.log('form', form.data)
         router.push('/invoice/new')
     }
 
