@@ -1,6 +1,9 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import axios from "axios";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 let form = ref({
     id:''
@@ -85,6 +88,35 @@ const SubTotal = () => {
 const Total = () => {
     if (form.value.invoice_items){
         return SubTotal() - form.value.discount
+    }
+}
+
+const onEdit = (id) => {
+    if (form.value.invoice_items.length>=1){
+       // alert(JSON.stringify(form.value.invoice_items))
+        let subtotal = 0
+        subtotal = SubTotal()
+
+        let total = 0
+        total = Total()
+
+        const formData = new FormData()
+
+        formData.append('invoice_item',JSON.stringify(form.value.invoice_items))
+        formData.append('customer_id', form.value.customer_id)
+        formData.append('date', form.value.date)
+        formData.append('due_date', form.value.due_date)
+        formData.append('number', form.value.number)
+        formData.append('reference', form.value.reference)
+        formData.append('discount', form.value.discount)
+        formData.append('subtotal', subtotal)
+        formData.append('total', total)
+        formData.append('terms_and_conditions', form.value.terms_and_conditions)
+
+        axios.post(`/api/update_invoice/${form.value.id}`, formData)
+
+        form.value.invoice_items = []
+        router.push('/')
     }
 }
 
@@ -188,7 +220,7 @@ const Total = () => {
 
                 </div>
                 <div>
-                    <a class="btn btn-secondary">
+                    <a class="btn btn-secondary" @click="onEdit()">
                         Save
                     </a>
                 </div>
