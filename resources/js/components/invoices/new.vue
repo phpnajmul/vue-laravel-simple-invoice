@@ -1,8 +1,9 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import axios from "axios";
-import router from "@/routes/index.js";
+import {useRouter} from "vue-router";
 
+const router = useRouter()
 
 let form = ref([])
 let allCustomer = ref([])
@@ -14,13 +15,11 @@ const hideModal = ref(true)
 let listProducts = ref([])
 
 
-
 onMounted( async () => {
     indexForm()
     getAllCustomers()
     getProducts()
 })
-
 
 
 const indexForm = async () => {
