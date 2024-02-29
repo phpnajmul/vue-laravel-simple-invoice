@@ -136,18 +136,16 @@ class InvoiceController extends Controller
 
         $invoice->update($request->all());
 
-        $invoice_item = $request->input("invoice_items");
-        $invoice_item->invoice_items()->delete();
+        $invoice_item = $request->input("invoice_item");
+        $invoice->invoice_items()->delete();
 
         foreach (json_decode($invoice_item) as $item){
             $itemData['product_id'] = $item->product_id;
             $itemData['invoice_id'] = $invoice->id;
             $itemData['quantity'] = $item->quantity;
             $itemData['unit_price'] = $item->unit_price;
-
             InvoiceItem::create($itemData);
         }
-
 
 
     }

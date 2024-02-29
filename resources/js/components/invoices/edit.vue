@@ -113,6 +113,7 @@ const onEdit = (id) => {
         formData.append('total', total)
         formData.append('terms_and_conditions', form.value.terms_and_conditions)
 
+
         axios.post(`/api/update_invoice/${form.value.id}`, formData)
 
         form.value.invoice_items = []

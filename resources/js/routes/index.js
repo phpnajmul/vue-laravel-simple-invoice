@@ -26,7 +26,6 @@ const routes = [
     component: invoiceEdit,
     props: true
     },
-
     {
         path: '/:pathMatch(.*)*',
         component: notFound
